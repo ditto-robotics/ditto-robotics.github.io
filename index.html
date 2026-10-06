@@ -1,142 +1,387 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="DITTO: Dexterous Interface for Transparent TeleOperation — anonymous conference submission.">
-  <meta name="keywords" content="Robotics, Teleoperation, Dexterous Manipulation, DITTO">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="DITTO: a dexterous robot hand paired with a kinematically equivalent motorized exoskeleton for bilateral teleoperation with joint-level force feedback, and handheld data collection.">
   <title>DITTO: Dexterous Interface for Transparent TeleOperation</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap"
-        rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="./static/images/ditto.png">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="./static/css/index.css?v=20261006">
+  <link rel="stylesheet" href="./static/css/gallery.css?v=20261006">
+  <link rel="stylesheet" href="./static/css/results.css?v=20261006">
+  <link rel="stylesheet" href="./static/css/userstudy.css?v=20261006">
+
 </head>
+
 <body>
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">
-            <span class="acronym-letter">DITTO</span>:
-            <span class="acronym-letter">D</span>exterous
-            <span class="acronym-letter">I</span>nterface for
-            <span class="acronym-letter">T</span>ransparent
-            <span class="acronym-letter">T</span>ele<span class="acronym-letter">O</span>peration
-          </h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">Anonymous authors</span>
-          </div>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">Conference Submission</span>
-          </div>
+  <!-- ╔══════════════════════════════════════════════════════════╗
+       ║  HERO                                                    ║
+       ╚══════════════════════════════════════════════════════════╝ -->
+  <header class="hero" id="top">
+    <div class="container">
 
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <span class="link-block">
-                <a href="#teaser"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-play"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a class="external-link button is-normal is-rounded is-dark"
-                   title="Coming soon"
-                   aria-disabled="true"
-                   onclick="return false;"
-                   style="opacity: 0.65; cursor: not-allowed;">
-                  <span class="icon">
-                      <i class="fas fa-tools"></i>
-                  </span>
-                  <span>Hardware Guide — Coming soon</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a class="external-link button is-normal is-rounded is-dark"
-                   title="Coming soon"
-                   aria-disabled="true"
-                   onclick="return false;"
-                   style="opacity: 0.65; cursor: not-allowed;">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code — Coming soon</span>
-                </a>
-              </span>
-            </div>
-          </div>
-        </div>
+      <h1 class="paper-title">
+        <span class="accent">DITTO</span>: Dexterous Interface<br>
+        for Transparent TeleOperation
+      </h1>
+
+      <div class="author-list">
+        <div class="author">Anonymous authors</div>
+      </div>
+      <p class="equal-contrib">Conference Submission</p>
+
+      <div class="link-buttons">
+        <a href="#" class="btn" aria-disabled="true" onclick="return false;">
+          <i class="fas fa-wrench"></i> <span>Hardware Guide (coming soon)</span>
+        </a>
+        <a href="#" class="btn" aria-disabled="true" onclick="return false;">
+          <i class="fab fa-github"></i> <span>Code (coming soon)</span>
+        </a>
       </div>
     </div>
-  </div>
-</section>
+  </header>
 
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline controls height="100%">
-        <source src="./static/videos/supplementary.mp4"
-                type="video/mp4">
-      </video>
-      <!-- <h2 class="subtitle has-text-centered">
-        Supplementary video.
-      </h2> -->
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Project website for our conference submission. Paper details and author
-            information will be added after the review period.
-          </p>
-        </div>
+  <!-- ╔══════════════════════════════════════════════════════════╗
+       ║  TEASER VIDEO                                            ║
+       ╚══════════════════════════════════════════════════════════╝ -->
+  <section class="section teaser-section" id="video">
+    <div class="container">
+      <div class="video-label">Overview</div>
+      <div class="teaser">
+        <video id="teaser_video" muted autoplay playsinline controls preload="auto" loop>
+          <source src="static/videos/supplementary.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer class="footer">
+  <!-- TL;DR
   <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content has-text-centered">
-          <p>
-            This website is adapted from the
-            <a href="https://github.com/nerfies/nerfies.github.io">Nerfies project page</a>
-            and is licensed under a
-            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-              Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-        </div>
+    <p class="tldr">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere eget mauris ac porta. Sed bibendum egestas porta. Phasellus massa sapien, porta in eros eget, varius porta lacus. Nunc vehicula sollicitudin erat, nec dignissim odio. Fusce porttitor mi a porta feugiat. Nam ac malesuada neque. Nulla facilisi.
+    </p>
+  </div>
+  -->
+
+  <!-- ╔══════════════════════════════════════════════════════════╗
+       ║  ABSTRACT                                                ║
+       ╚══════════════════════════════════════════════════════════╝ -->
+  <section class="section" id="abstract">
+    <div class="container container-narrow">
+      <h2>Abstract</h2>
+      <p class="lead">
+        Collecting data for manipulation with high-DOF hands is challenging, as interfaces must capture rich hand motion while rendering the contact interactions essential for precise manipulation. Existing data collection approaches face a trade-off: <em>teleoperation</em> ensures deployment consistency but lacks force feedback, while <em>handheld (in-the-wild)</em> systems provide natural force transparency but introduce a visual embodiment gap at deployment. We present <strong>DITTO</strong>, a <strong>D</strong>exterous <strong>I</strong>nterface for <strong>T</strong>ransparent <strong>T</strong>ele<strong>O</strong>peration, which resolves this through the anatomically informed co-design of a dexterous 7-DOF robotic hand and a kinematically equivalent motorized exoskeleton. A 1-to-1 actuator mapping between the exoskeleton and robotic hand enables <em>handheld (in-the-wild)</em> data collection and <em>bilateral teleoperation</em> with <strong>joint-level</strong> force feedback unified in a single platform. We demonstrate that the DITTO exoskeleton spans the operator's natural index-to-thumb workspace, and showcase DITTO's dexterous capabilities via learned policies on contact-rich tasks.
+      </p>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════════════════════╗
+       ║  FORCE FEEDBACK                                          ║
+       ╚══════════════════════════════════════════════════════════╝ -->
+  <section class="section" id="force-feedback">
+    <div class="container">
+      <h2>Force Feedback</h2>
+      <p class="lead">
+        DITTO's <em>leader-follower</em> 1:1 joint correspondence enables <strong>joint-level</strong> force feedback.
+      </p>
+      <div class="teaser">
+        <video data-play-in-view muted loop playsinline controls preload="metadata" poster="static/videos/force_feedback.jpg">
+          <source src="static/videos/force_feedback.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
-  </div>
-</footer>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════════════════════╗
+       ║  DEXTEROUS TELEOPERATION                                 ║
+       ╚══════════════════════════════════════════════════════════╝ -->
+  <section class="section" id="teleop">
+    <div class="container">
+      <h2>Dexterous Teleoperation</h2>
+      <p class="lead">
+        DITTO enables <strong>highly dexterous</strong> teleoperation, leveraging coordinated index/thumb control.
+      </p>
+    </div>
+
+    <!-- Full-width so the centred slide can be larger than the text column -->
+    <div class="gallery">
+      <!-- Title buttons are generated from each slide's data-title -->
+      <div class="gallery-tabs" aria-label="Choose a video"></div>
+
+      <div class="gallery-track" tabindex="0" aria-label="Teleoperation videos">
+        <figure class="gallery-slide" data-title="Card Pick">
+          <div class="gallery-media">
+            <video muted loop playsinline preload="metadata" poster="static/videos/teleop/cards.jpg">
+              <source src="static/videos/teleop/cards.mp4" type="video/mp4">
+            </video>
+            <span class="speed-badge" aria-label="Real-time playback">x1</span>
+          </div>
+          <figcaption>Fanning a deck of cards to pick up <strong>only</strong> the top card.</figcaption>
+        </figure>
+
+        <figure class="gallery-slide" data-title="Nut Threading">
+          <div class="gallery-media">
+            <video muted loop playsinline preload="metadata" poster="static/videos/teleop/nut_threading.jpg">
+              <source src="static/videos/teleop/nut_threading.mp4" type="video/mp4">
+            </video>
+            <span class="speed-badge" aria-label="Real-time playback">x1</span>
+          </div>
+          <figcaption>Precise alignment to insert a nut into a bolt, followed by fast threading through dynamic motion.</figcaption>
+        </figure>
+
+        <figure class="gallery-slide" data-title="Double Grasp">
+          <div class="gallery-media">
+            <video muted loop playsinline preload="metadata" poster="static/videos/teleop/double_grasp.jpg">
+              <source src="static/videos/teleop/double_grasp.mp4" type="video/mp4">
+            </video>
+            <span class="speed-badge" aria-label="Real-time playback">x1</span>
+          </div>
+          <figcaption>Grasping two objects with one hand at the same time.</figcaption>
+        </figure>
+
+        <figure class="gallery-slide" data-title="AirPods Case">
+          <div class="gallery-media">
+            <video muted loop playsinline preload="metadata" poster="static/videos/teleop/airpods.jpg">
+              <source src="static/videos/teleop/airpods.mp4" type="video/mp4">
+            </video>
+            <span class="speed-badge" aria-label="Real-time playback">x1</span>
+          </div>
+          <figcaption>Opening an AirPods case and extracting one earbud.</figcaption>
+        </figure>
+      </div>
+
+      <div class="gallery-footer">
+        <button type="button" class="gallery-nav gallery-prev" aria-label="Previous video"><i class="fas fa-chevron-left"></i></button>
+        <span class="gallery-counter" aria-live="polite"></span>
+        <button type="button" class="gallery-nav gallery-next" aria-label="Next video"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════════════════════╗
+       ║  HANDHELD (IN-THE-WILD) DATA COLLECTION                  ║
+       ╚══════════════════════════════════════════════════════════╝ -->
+  <section class="section" id="handheld">
+    <div class="container">
+      <h2>Handheld (In-The-Wild) Data Collection</h2>
+      <p class="lead lead-intro">DITTO supports both:</p>
+      <ul class="lead lead-list">
+        <li><strong>Bilateral teleoperation</strong> with force feedback, for high-fidelity, robot-aligned data.</li>
+        <li><strong>Handheld</strong> collection with the exoskeleton alone, for intuitive and scalable data collection.</li>
+      </ul>
+    </div>
+
+    <!-- Camera clip with the wrist camera inset -->
+    <div class="gallery">
+      <div class="gallery-tabs" aria-label="Choose a data collection mode"></div>
+
+      <div class="gallery-track" tabindex="0" aria-label="Data collection videos">
+        <figure class="gallery-slide" data-title="Teleoperation">
+          <div class="gallery-media">
+            <video muted loop playsinline preload="metadata" poster="static/videos/handheld/teleop.jpg" aria-label="Bilateral teleoperation: test tube uncapping on the robot, with the robot hand camera inset">
+              <source src="static/videos/handheld/teleop.mp4" type="video/mp4">
+            </video>
+            <span class="speed-badge" aria-label="Real-time playback">x1</span>
+          </div>
+        </figure>
+
+        <figure class="gallery-slide" data-title="Handheld">
+          <div class="gallery-media">
+            <video muted loop playsinline preload="metadata" poster="static/videos/handheld/handheld.jpg" aria-label="Handheld collection: test tube uncapping with the exoskeleton alone, with the exoskeleton camera inset">
+              <source src="static/videos/handheld/handheld.mp4" type="video/mp4">
+            </video>
+            <span class="speed-badge" aria-label="Real-time playback">x1</span>
+          </div>
+        </figure>
+      </div>
+
+      <div class="gallery-footer">
+        <button type="button" class="gallery-nav gallery-prev" aria-label="Previous video"><i class="fas fa-chevron-left"></i></button>
+        <span class="gallery-counter" aria-live="polite"></span>
+        <button type="button" class="gallery-nav gallery-next" aria-label="Next video"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════════════════════╗
+       ║  AUTONOMOUS POLICIES                                     ║
+       ╚══════════════════════════════════════════════════════════╝ -->
+  <section class="section" id="policies">
+    <div class="container">
+      <h2>Autonomous Policies</h2>
+      <p class="lead">
+        Policies trained on data collected via DITTO teleoperation perform <strong>contact-rich</strong> tasks relying on the hand's intrinsic degrees of freedom.
+      </p>
+    </div>
+
+    <!-- Policy rollouts with their input cameras inset -->
+    <div class="gallery">
+      <div class="gallery-tabs" aria-label="Choose a policy video"></div>
+
+      <div class="gallery-track" tabindex="0" aria-label="Policy videos">
+        <figure class="gallery-slide" data-title="Key Rotation">
+          <div class="gallery-media">
+            <video muted loop playsinline preload="metadata" poster="static/videos/policies/key.jpg">
+              <source src="static/videos/policies/key.mp4" type="video/mp4">
+            </video>
+            <span class="speed-badge" aria-label="Real-time playback">x1</span>
+          </div>
+          <figcaption>Turns a key until the lock engages, applying torque with the fingers alone and minimal wrist motion.<br><small><i class="fas fa-volume-high" aria-hidden="true"></i> Sound on</small></figcaption>
+        </figure>
+
+        <figure class="gallery-slide" data-title="Mahjong Flipping">
+          <div class="gallery-media">
+            <video muted loop playsinline preload="metadata" poster="static/videos/policies/mahjong.jpg">
+              <source src="static/videos/policies/mahjong.mp4" type="video/mp4">
+            </video>
+            <span class="speed-badge" aria-label="Real-time playback">x1</span>
+          </div>
+          <figcaption>Reorients a mahjong tile through two consecutive flips between the fingers, then places it in a target box.</figcaption>
+        </figure>
+
+        <figure class="gallery-slide" data-title="USB Insertion">
+          <div class="gallery-media">
+            <video muted loop playsinline preload="metadata" poster="static/videos/policies/usb.jpg">
+              <source src="static/videos/policies/usb.mp4" type="video/mp4">
+            </video>
+            <!-- this video has its speed badges built in -->
+          </div>
+          <figcaption>Picks up a retractable USB drive, slides the plug out while keeping its grasp, and inserts it into a slot.<br><small>*The full-frame view is the policy's side camera, which is also a policy input.</small></figcaption>
+        </figure>
+
+        <figure class="gallery-slide" data-title="Rubik's Cube">
+          <div class="gallery-media">
+            <video muted loop playsinline preload="metadata" poster="static/videos/policies/cube.jpg">
+              <source src="static/videos/policies/cube.mp4" type="video/mp4">
+            </video>
+            <span class="speed-badge" aria-label="Real-time playback">x1</span>
+          </div>
+          <figcaption>Bimanual: picks up a Rubik's Cube and rotates its right and top faces with thumb-index manipulation.</figcaption>
+        </figure>
+
+      </div>
+
+      <div class="gallery-footer">
+        <button type="button" class="gallery-nav gallery-prev" aria-label="Previous video"><i class="fas fa-chevron-left"></i></button>
+        <span class="gallery-counter" aria-live="polite"></span>
+        <button type="button" class="gallery-nav gallery-next" aria-label="Next video"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+    <!-- Success-rate table (static/js/results.js) -->
+    <div class="container">
+      <div class="res-wrap" data-results="table"></div>
+      <p class="res-caption">Success rate over 20 trials per stage, for Diffusion Policies (Transformer) trained on DITTO teleoperation data.</p>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════════════════════╗
+       ║  USER STUDY                                              ║
+       ╚══════════════════════════════════════════════════════════╝ -->
+  <section class="section" id="user-study">
+    <div class="container">
+      <h2>User Study</h2>
+      <p class="lead">
+        In a user study with 8 participants, DITTO's human-aligned kinematics and force feedback led to <strong>faster</strong> manipulation and <strong>gentler</strong> contact forces.
+      </p>
+
+      <!-- Key, headline figures and charts are rendered by static/js/userstudy.js (data: paper Table II).
+           Figures are crops of paper Fig. 3. -->
+      <div class="us">
+        <div data-us="key"></div>
+
+        <h3>Experiment 1: Mahjong Tile Flipping</h3>
+        <p class="us-desc">
+          Flip a mahjong tile as many times as possible in 60 s, testing speed during coordinated index–thumb motion.
+        </p>
+        <img class="us-task-img" src="static/images/user_study/task_mahjong.jpg?v=20261006" alt="Two frames of the DITTO hand flipping a mahjong tile on a platform mounted on a force-torque sensor; arrows mark the flip direction." loading="lazy">
+        <div class="us-side">
+          <div data-us="chart" data-metric="flips"></div>
+          <p class="us-prose">
+            With the DITTO exoskeleton and force feedback, participants flipped the tile <strong>2.2 times</strong> as often as with fingertip retargeting, and <strong>1.3 times</strong> as often as with feedback turned off.
+          </p>
+        </div>
+        <figure class="us-fig">
+          <div class="us-fig-title">Mahjong Tile Flips per Participant</div>
+          <a href="static/images/user_study/flips.png?v=20261006" target="_blank" rel="noopener">
+            <img src="static/images/user_study/flips.png?v=20261006" alt="Stacked bars of tile flips per participant (S1 to S8) and their average, for DITTO, DITTO-NF and Fingertip, with one shade per trial." loading="lazy">
+          </a>
+          <figcaption>Flips per participant (S1–S8), summed over three trials; shading marks the trial. <em>Avg</em> is the mean ± std across the 8 participants (paper Fig. 3b).</figcaption>
+        </figure>
+        <p class="us-caption">
+          Every participant flipped the most tiles with the DITTO exoskeleton, and all but one did best with force feedback on. DITTO beats Fingertip (p ≤ 0.023, one-sided permutation test).
+          Flips are each participant's total over the three trials; bars show the mean ± std across the 8 participants.
+        </p>
+
+        <h3>Experiment 2: Ratchet Turning</h3>
+        <p class="us-desc">
+          Turn a ratchet three full revolutions as fast as possible (instrumented with a force-torque sensor).
+        </p>
+        <img class="us-task-img us-task-img--single" src="static/images/user_study/task_ratchet.jpg?v=20261006" alt="The DITTO hand gripping a ratchet mounted on a force-torque sensor; arrows mark the turning direction." loading="lazy">
+        <p class="us-prose">The robot arm is locked in place for this task, so any force on the sensor comes from the fingers alone.</p>
+        <div class="us-side">
+          <div data-us="chart" data-metric="time"></div>
+          <p class="us-prose">Users took <strong>30% less time</strong> using DITTO compared to fingertip retargeting. For this metric, performance was similar with and without force feedback.</p>
+        </div>
+        <div class="us-side">
+          <div data-us="chart" data-metric="force"></div>
+          <div>
+            <p class="us-prose">With DITTO force feedback, users applied <strong>47% less force</strong>, without significantly impacting task throughput.</p>
+            <p class="us-prose">This shows DITTO prevents undesired excessive forces that do not lead to better task performance but could damage the hardware.</p>
+          </div>
+        </div>
+        <div class="us-side">
+          <div data-us="chart" data-metric="pct"></div>
+          <p class="us-prose">With DITTO, <strong>92.8%</strong> of force samples stayed under 14.8N (which is Fingertip's average contact force).</p>
+        </div>
+        <p class="us-caption">
+          One-sided permutation tests: DITTO vs. DITTO-NF on both force metrics, p = 0.012; DITTO vs. Fingertip on every metric, p ≤ 0.023.
+        </p>
+
+        <figure class="us-fig">
+          <div class="us-fig-title">Ratchet Contact Force Distribution (ECDF)</div>
+          <a href="static/images/user_study/ecdf.png?v=20261006" target="_blank" rel="noopener">
+            <img src="static/images/user_study/ecdf.png?v=20261006" alt="Empirical CDF of ratchet contact force for DITTO, DITTO-NF and Fingertip; the DITTO curve rises fastest, reaching 1 by about 28 N." loading="lazy">
+          </a>
+          <figcaption>Share of force samples below each force level. Bold lines are the average across all 8 participants, thin lines are individual participants; further left means gentler contact (paper Fig. 3a).</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════════════════════╗
+       ║  FOOTER                                                  ║
+       ╚══════════════════════════════════════════════════════════╝ -->
+  <footer class="site-footer">
+    <p>Website template modified from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and <a href="https://younghyopark.me/tune-to-learn/">Tune to Learn</a>.</p>
+    <p>Licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+    <p><a href="#top">Back to top &uarr;</a></p>
+  </footer>
+
+  <!-- Table of Contents -->
+  <nav id="dynamic-toc" class="dynamic-toc"></nav>
+
+  <script src="./static/js/toc.js?v=20261006"></script>
+  <script src="./static/js/gallery.js?v=20261006"></script>
+  <script src="./static/js/play-in-view.js?v=20261006"></script>
+  <script src="./static/js/results.js?v=20261006"></script>
+  <script src="./static/js/userstudy.js?v=20261006"></script>
 
 </body>
+
 </html>

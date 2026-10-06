@@ -1,0 +1,113 @@
+/* ═══════════════════════════════════════════════════════════════
+   Policy success-rate table — rendered by static/js/results.js
+   One measure (successes / 20 trials) → one ink colour on a lighter
+   track; no legend needed. Falls back to its own values when the page
+   doesn't define the tokens.
+   ═══════════════════════════════════════════════════════════════ */
+
+.res-table {
+  --r-ink:    var(--text, #1a1a1a);
+  --r-muted:  var(--text-muted, #6b6b6b);
+  --r-light:  var(--text-light, #999);
+  --r-rule:   var(--border, #e3e3e3);
+  --r-track:  #e6e6e6;
+  --r-hover:  #f5f5f5;
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: 0.9rem;
+  color: var(--r-ink);
+}
+
+.res-table thead th {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--r-muted);
+  text-align: left;
+  padding: 0 0.75rem 0.55rem;
+  border-bottom: 1px solid var(--r-ink);
+}
+.res-table th[scope="rowgroup"],
+.res-table td {
+  padding: 0.55rem 0.75rem;
+  vertical-align: middle;
+}
+.res-table th[scope="rowgroup"] {
+  text-align: left;
+  vertical-align: top;
+  font-weight: inherit;
+  width: 30%;
+}
+.res-task { display: block; font-weight: 600; font-size: 0.92rem; }
+.res-meta { display: block; margin-top: 0.15rem; font-size: 0.76rem; color: var(--r-muted); }
+
+.res-table tr.res-first > * { border-top: 1px solid var(--r-rule); }
+.res-table tbody tr:first-child > * { border-top: 0; }
+.res-table tbody tr:last-child > *,
+.res-table tbody [rowspan] { border-bottom: 1px solid var(--r-rule); }
+
+.res-table td { width: 1%; white-space: nowrap; }
+.res-table td.res-stage { width: auto; white-space: normal; color: var(--r-muted); }
+.res-table tbody tr:hover td:not([rowspan]) { background: var(--r-hover); }
+
+/* Demos column: numbers align on the right, under a right-aligned header */
+.res-table .res-num { text-align: right; font-variant-numeric: tabular-nums; }
+.res-table td.res-demos { vertical-align: top; padding-right: 1.5rem; }
+
+.res-success {
+  display: grid;
+  grid-template-columns: 180px 3.2rem;
+  align-items: center;
+  gap: 0.75rem;
+}
+.res-track {
+  position: relative;
+  display: block;
+  height: 6px;
+  background: var(--r-track);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.res-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--r-ink);
+  border-radius: 0 3px 3px 0;
+}
+.res-count {
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--r-light);
+  white-space: nowrap;
+}
+.res-count strong { color: var(--r-ink); font-weight: 600; }
+
+/* Following the gallery: the selected task's rows get a faded DITTO lavender (#a684c8, the
+   user-study DITTO colour) background and a lavender bar on the task cell */
+.res-table.res-follow tbody tr > * { transition: background-color .25s ease, box-shadow .25s ease; }
+.res-table.res-follow tbody tr.is-current > * { background: rgba(166, 132, 200, 0.18); }
+.res-table.res-follow tbody tr.is-current th[scope="rowgroup"] { box-shadow: inset 4px 0 0 #a684c8; }
+.res-table.res-follow tbody tr.is-current .res-fill { background: #8a63b8; }
+
+/* Space between the gallery and the table */
+.res-wrap { margin-top: 2.5rem; }
+
+/* p.… beats the page's `.section p` margin rule */
+p.res-caption {
+  margin: 0.8rem 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted, #6b6b6b);
+}
+
+@media (max-width: 640px) {
+  .res-table th[scope="rowgroup"] { width: auto; }
+  .res-table th[scope="rowgroup"],
+  .res-table td,
+  .res-table thead th { padding-left: 0.4rem; padding-right: 0.4rem; }
+  .res-table td.res-demos { padding-right: 0.6rem; }
+  /* No room for bars beside four columns; the percentage carries the value */
+  .res-track { display: none; }
+  .res-success { grid-template-columns: auto; }
+}

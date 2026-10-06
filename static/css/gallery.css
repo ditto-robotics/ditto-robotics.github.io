@@ -1,0 +1,180 @@
+/* ═══════════════════════════════════════════════════════════════
+   Video slide gallery
+   Self-contained: falls back to its own values when the page does
+   not define the design tokens below, so it can be dropped into
+   another site as-is. Markup + behaviour: static/js/gallery.js
+   ═══════════════════════════════════════════════════════════════ */
+
+.gallery {
+  /* Active slide width. It is centred; what is left of the track splits
+     into the faded previous / next peeks on either side. */
+  /* Same width as the page's text column (.container minus its padding),
+     so slides line up with the other videos; on narrow screens leave
+     1.5rem each side for the peeks. */
+  --g-col:     calc(var(--max-width, 900px) - 3rem);
+  --g-slide:   min(var(--g-col), calc(100% - 3rem));
+  --g-gap:     1.25rem;
+  --g-max:     1240px;  /* cap the track, which sets how wide the peeks get */
+  --g-fade:    7%;      /* soft fade toward the track edges */
+  --g-text:    var(--text, #1a1a1a);
+  --g-muted:   var(--text-muted, #6b6b6b);
+  --g-border:  var(--border, #e3e3e3);
+  --g-strong:  var(--border-strong, #c8c8c8);
+  --g-radius:  var(--radius-lg, 6px);
+  --g-font:    var(--font-sans, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-family: var(--g-font);
+}
+
+/* ── Title buttons ─────────────────────────────────────────── */
+.gallery-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem;
+  margin: 0 0 1rem;
+  padding: 0 1rem;
+}
+.gallery-tab {
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.3;
+  padding: 0.42rem 0.95rem;
+  color: var(--g-text);
+  background: transparent;
+  border: 1px solid var(--g-strong);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+.gallery-tab:hover { border-color: var(--g-text); }
+.gallery-tab.is-active {
+  background: var(--g-text);
+  border-color: var(--g-text);
+  color: #fff;
+}
+.gallery-tab:focus-visible,
+.gallery-nav:focus-visible,
+.gallery-track:focus-visible {
+  outline: 2px solid #4f46e5;
+  outline-offset: 2px;
+}
+
+/* ── Track ─────────────────────────────────────────────────── */
+.gallery-track {
+  position: relative;            /* offsetParent for slide positions */
+  display: flex;
+  gap: var(--g-gap);
+  max-width: var(--g-max);
+  margin: 0 auto;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain; /* no browser back-swipe on trackpads */
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--g-fade), #000 calc(100% - var(--g-fade)), transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 var(--g-fade), #000 calc(100% - var(--g-fade)), transparent);
+}
+.gallery-track::-webkit-scrollbar { display: none; }
+
+/* Spacers so the first and last slides can be centred too */
+.gallery-track::before,
+.gallery-track::after {
+  content: '';
+  flex: 0 0 max(0px, calc((100% - var(--g-slide)) / 2 - var(--g-gap)));
+}
+
+.gallery-slide {
+  flex: 0 0 var(--g-slide);
+  margin: 0;
+  scroll-snap-align: center;
+  opacity: 0.45;
+  cursor: pointer;
+  transition: opacity .3s ease;
+}
+.gallery-slide:hover { opacity: 0.7; }
+.gallery-slide.is-active { opacity: 1; cursor: auto; }
+
+.gallery-media {
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border: 1px solid var(--g-border);
+  border-radius: var(--g-radius);
+  overflow: hidden;
+}
+/* Playback-speed badge, bottom-right of a slide's video */
+.gallery-media { position: relative; }
+.speed-badge {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  padding: 0.3rem 0.85rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+  background: rgba(18, 18, 18, 0.78);
+  border-radius: 9px;
+  pointer-events: none;
+  transition: bottom .2s ease;
+}
+/* The active slide shows native controls on hover; lift the badge above them */
+.gallery-slide.is-active:hover .speed-badge { bottom: 58px; }
+
+.gallery-media video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.gallery-slide figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--g-muted);
+  text-align: center;
+}
+
+/* ── Prev / next ───────────────────────────────────────────── */
+.gallery-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  margin-top: 0.85rem;
+}
+.gallery-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  padding: 0;
+  font-size: 0.85rem;
+  color: var(--g-text);
+  background: transparent;
+  border: 1px solid var(--g-strong);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border-color .15s ease, opacity .15s ease;
+}
+.gallery-nav:hover:not(:disabled) { border-color: var(--g-text); }
+.gallery-nav:disabled { opacity: 0.35; cursor: default; }
+.gallery-counter {
+  min-width: 3.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--g-muted);
+}
+
+@media (max-width: 640px) {
+  .gallery { --g-gap: 0.5rem; --g-fade: 3%; }
+  .gallery-tab { font-size: 0.8rem; padding: 0.36rem 0.8rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-slide, .gallery-tab { transition: none; }
+}

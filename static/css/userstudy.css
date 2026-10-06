@@ -1,0 +1,222 @@
+/* ═══════════════════════════════════════════════════════════════
+   User study results — rendered by static/js/userstudy.js
+   Condition colours follow the manuscript (Fig. 3: DITTO lavender,
+   DITTO-NF green, Fingertip blue). The lavender is a slightly deeper step
+   of the paper's #aa97d0, which reads too gray and too faint on white;
+   the three stay distinguishable for colour-blind viewers with 3:1 contrast on white.
+   Every bar is labelled, so colour is never the only cue. Bars are thin
+   with a rounded data-end; the ±1 std whisker wears a surface-coloured
+   ring so it reads over every bar.
+   ═══════════════════════════════════════════════════════════════ */
+
+.us {
+  --u-ink:     var(--text, #1a1a1a);
+  --u-muted:   var(--text-muted, #6b6b6b);
+  --u-light:   var(--text-light, #999);
+  --u-rule:    var(--border, #e3e3e3);
+  --u-surface: var(--bg, #fff);
+  --u-ditto:     #a684c8;  /* manuscript #aa97d0, deepened to pass contrast/chroma */
+  --u-nf:        #519e3e;  /* manuscript */
+  --u-fingertip: #3b75af;  /* manuscript */
+  --u-hover:   #f5f5f5;
+  font-family: var(--font-sans, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  color: var(--u-ink);
+}
+
+/* ── Results: each chart with its takeaway to the right ── */
+p.us-prose {
+  margin: 0 0 0.9rem;
+  line-height: 1.7;
+  color: var(--u-ink);
+}
+/* sentence beside its chart */
+.us-side {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 2.25rem;
+  align-items: center;
+  margin: 1.4rem 0 0;
+}
+.us-side p.us-prose { margin: 0; }
+.us-side p.us-prose + p.us-prose { margin-top: 0.7rem; }   /* two short paragraphs beside one chart */
+.us-side + .us-side { margin-top: 1.25rem; }
+/* ── Conditions key ───────────────────────────────────────── */
+.us-conds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+  margin: 0 0 1.25rem;
+  font-size: 0.85rem;
+}
+.us-cond-item { display: flex; align-items: baseline; gap: 0.4rem; }
+.us-conds dt { font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem; }
+.us-conds dd { margin: 0; color: var(--u-muted); }
+.us-ours { font-weight: 600; color: var(--u-ink); }
+.us-key {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+.us-ditto .us-key { background: var(--u-ditto); }
+.us-nf .us-key { background: var(--u-nf); }
+.us-fingertip .us-key { background: var(--u-fingertip); }
+
+/* ── Bar charts ───────────────────────────────────────────── */
+.us-panel { margin: 0; }
+.us-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 0.5rem;
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.45rem;
+  border-bottom: 1px solid var(--u-rule);
+}
+.us-metric { font-size: 0.92rem; font-weight: 600; }
+.us-better { margin-left: auto; font-size: 0.76rem; color: var(--u-light); }
+.us-sub { flex-basis: 100%; font-size: 0.74rem; color: var(--u-light); }   /* own line under the title */
+
+.us-rows { display: grid; gap: 0.15rem; }
+.us-row {
+  display: grid;
+  grid-template-columns: 4.6rem minmax(0, 1fr) 6.6rem;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.3rem 0.4rem;
+  margin: 0 -0.4rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: default;
+  outline: none;
+}
+.us-row:hover,
+.us-row:focus-visible { background: var(--u-hover); }
+.us-row:focus-visible { box-shadow: 0 0 0 2px #4f46e5; }
+.us-cond { color: var(--u-muted); }
+.us-ditto .us-cond { color: var(--u-ink); font-weight: 600; }
+
+.us-plot {
+  position: relative;
+  display: block;
+  height: 14px;
+  border-left: 1px solid var(--u-rule);  /* the zero baseline */
+}
+.us-bar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: 0 4px 4px 0;            /* rounded data-end, square at the baseline */
+}
+.us-ditto .us-bar { background: var(--u-ditto); }
+.us-nf .us-bar { background: var(--u-nf); }
+.us-fingertip .us-bar { background: var(--u-fingertip); }
+
+/* ±1 std: a hairline with end caps, ringed in the surface colour */
+.us-whisker {
+  position: absolute;
+  top: 50%;
+  height: 1.5px;
+  margin-top: -0.75px;
+  background: var(--u-ink);
+  box-shadow: 0 0 0 1px var(--u-surface);
+}
+.us-whisker::before,
+.us-whisker::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  width: 1.5px;
+  height: 9.5px;
+  background: var(--u-ink);
+  box-shadow: 0 0 0 1px var(--u-surface);
+}
+.us-whisker::before { left: 0; }
+.us-whisker::after { right: 0; }
+
+.us-val {
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--u-light);
+  white-space: nowrap;
+}
+.us-val strong { color: var(--u-ink); font-weight: 600; }
+
+.us-tip {
+  position: fixed;
+  z-index: 200;
+  display: none;
+  pointer-events: none;
+  max-width: 300px;
+  padding: 0.45rem 0.65rem;
+  background: #fff;
+  border: 1px solid var(--border, #e3e3e3);
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  font: 0.78rem/1.45 var(--font-sans, 'Inter', sans-serif);
+  color: var(--text-muted, #6b6b6b);
+}
+.us-tip strong { display: block; color: var(--text, #1a1a1a); font-weight: 600; }
+.us-tip span { display: block; }   /* one line each, so lines never run together */
+
+/* Task photo, between the task description and the highlights */
+.us-task-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 1.5rem;
+  border-radius: 6px;
+}
+/* A single frame: half the column, centred, so it matches one frame of a two-frame photo */
+.us-task-img--single {
+  max-width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Figures from the paper: full column width ────────────── */
+.us-fig { margin: 1.75rem 0 0; }
+.us-fig-title {
+  margin: 0 0 0.6rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+}
+.us-fig a { display: block; }
+.us-fig img {
+  display: block;
+  width: auto;
+  height: auto;
+  /* paper figures are drawn for print; cap them so they never fill a short screen */
+  max-width: min(100%, 700px);
+  max-height: 55vh;
+  margin: 0 auto;
+  border: 1px solid var(--u-rule);
+  border-radius: 6px;
+}
+.us-fig figcaption {
+  max-width: 700px;
+  margin: 0.45rem auto 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--u-muted);
+}
+
+/* p.… beats the page's `.section p` margin rule */
+p.us-desc {
+  margin: 0 0 1.1rem;
+  color: var(--text-muted, #6b6b6b);
+}
+p.us-caption {
+  margin: 1.25rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-muted, #6b6b6b);
+}
+
+@media (max-width: 760px) {
+  .us-side { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .us-task-img--single { max-width: 75%; }
+  .us-row { grid-template-columns: 4.3rem minmax(0, 1fr) 6.2rem; gap: 0.5rem; font-size: 0.8rem; }
+}

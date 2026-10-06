@@ -2,4 +2,4 @@
 
 Anonymous project page for our conference submission.
 
-Layout adapted from the [Nerfies project page](https://github.com/nerfies/nerfies.github.io).
+Layout adapted from [Nerfies](https://github.com/nerfies/nerfies.github.io) and [Tune to Learn](https://younghyopark.me/tune-to-learn/).
